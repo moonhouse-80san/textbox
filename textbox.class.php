@@ -79,6 +79,48 @@
                     break;
             }
 
+            // 각 박스에 고유 ID 부여
+            $box_id = 'textbox_' . rand(1000000, 9999999);
+
+            // 복사 버튼을 위한 JavaScript 함수 추가
+            $copy_button_script = '
+            <script>
+            function copyTextboxContent(boxId) {
+                var box = document.getElementById(boxId);
+                var content = box.textContent || box.innerText;
+                
+                // 복사 버튼 텍스트 제거 (버튼 텍스트가 복사되지 않도록)
+                content = content.replace("복사하기", "").trim();
+                
+                // 임시 textarea 생성
+                var textarea = document.createElement("textarea");
+                textarea.value = content;
+                document.body.appendChild(textarea);
+                
+                // 선택 후 복사
+                textarea.select();
+                document.execCommand("copy");
+                
+                // 임시 요소 제거
+                document.body.removeChild(textarea);
+                
+                // 복사 완료 메시지
+                alert("내용이 클립보드에 복사되었습니다.");
+            }
+            </script>';
+            
+            // 한 번만 스크립트를 출력하기 위한 정적 변수
+            static $script_added = false;
+            if (!$script_added) {
+                $output .= $copy_button_script;
+                $script_added = true;
+            }
+
+            // 복사 버튼 스타일
+            $button_style = 'position: absolute; top: 5px; right: 5px; padding: 3px 8px; ' .
+                           'background-color: #f8f8f8; border: 1px solid #ddd; ' .
+                           'border-radius: 3px; cursor: pointer; font-size: 12px;';
+
             if($use_folder == "Y") {
                 $folder_id = rand(1000000,9999999);
 
@@ -101,15 +143,15 @@
                         break;
                 }
 
-                $style .= "display:none;";
+                $style .= "display:none; position: relative;";
 
                 $folder_margin = sprintf("%spx %spx %spx %spx", $margin, $margin, 10, $margin);
                 $output .= sprintf('<div id="folder_open_%s" style="margin: %s; display: block;"><a class="%s" href="#" onclick="zbxe_folder_open(\'%s\');return false;">%s</a></div>', $folder_id, $folder_margin, $class, $folder_id, $folder_opener);
                 $output .= sprintf('<div id="folder_close_%s" style="margin: %s; display: none;"><a class="%s" href="#" onclick="zbxe_folder_close(\'%s\');return false;">%s</a></div>', $folder_id, $folder_margin, $class, $folder_id, $folder_closer);
 
-                $output .= sprintf('<div style="%s" id="folder_%s">%s</div>', $style, $folder_id,$body);
+                $output .= sprintf('<div style="%s" id="folder_%s">%s<button onclick="copyTextboxContent(\'folder_%s\')" style="%s">복사하기</button></div>', $style, $folder_id, $body, $folder_id, $button_style);
             } else {
-                $output .= sprintf('<div style="%s">%s</div>', $style, $body);
+                $output .= sprintf('<div style="%s position: relative;" id="%s">%s<button onclick="copyTextboxContent(\'%s\')" style="%s">복사하기</button></div>', $style, $box_id, $body, $box_id, $button_style);
             }
             return $output;
         }
