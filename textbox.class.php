@@ -60,10 +60,19 @@
             $body = $xml_obj->body;
 
 			// 'Y'로 설정된 경우에만 빈칸 제거 기능 적용
-			if($remove_whitespace == 'Y') {
-				// HTML 엔티티 및 공백 처리
-				// 연속된 &nbsp; 제거
+			if ($remove_whitespace == 'Y') {
+				// 1. 모든 &nbsp;를 일반 공백으로 변환
 				$body = preg_replace('/(&nbsp;)+/', ' ', $body);
+
+				// 2. 첫 줄의 선행 공백(띄어쓰기, 탭 등)을 찾음
+				preg_match('/^(\s+)/', $body, $matches);
+				$leadingWhitespace = $matches[1] ?? '';
+
+				if (!empty($leadingWhitespace)) {
+					// 3. 모든 줄의 시작에서 첫 줄과 동일한 공백 제거 (정규식 이스케이프 처리)
+					$pattern = '/^' . preg_quote($leadingWhitespace, '/') . '/m';
+					$body = preg_replace($pattern, '', $body);
+				}
 			}
 
             $output = "";
