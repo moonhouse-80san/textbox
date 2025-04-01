@@ -3,6 +3,7 @@
 
 #folder_area { clear:left; }
 
+.remove_type, 
 .border_type { float:left; margin-right:1em; width:120px; }
 
 img.color_icon { width:14px; height:14px; border:1px solid #FFFFFF; }

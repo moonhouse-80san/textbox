@@ -54,7 +54,7 @@
 		<var name="remove_whitespace" type="radio">
 			<title xml:lang="ko">빈칸 제거 기능</title>
 			<description xml:lang="ko">글의 앞부분의 빈칸을 제거합니다.</description>
-			<options value="">
+			<options value="N">
 				<title>제거안함(기본)</title>
 			</options>
 			<options value="Y">

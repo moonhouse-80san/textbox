@@ -130,19 +130,13 @@
         <tr>
              <th scope="row">빈칸 제거 기능</th>
              <td colspan="5">
-                 <div class="border_type">
-                     <input type="radio" name="remove_whitespace" value="" id="remove_whitespace_no" checked="checked" />
-                     <label for="remove_whitespace_no">
-                         <img src="./images/blank.gif" class="border_preview_none_color" alt="blank" />
+                 <div class="remove_type">
+                     <input type="radio" name="remove_whitespace" value="N" id="remove_whitespace_no" checked="checked" />
                          제거안함
-                     </label>
                  </div>
-                 <div class="border_type">
-                     <input type="radio" name="remove_whitespace" value="solid" id="remove_whitespace_yes" />
-                     <label for="remove_whitespace_yes">
-                         <img src="./images/blank.gif" class="border_preview_none_color" alt="blank" />
+                 <div class="remove_type">
+                     <input type="radio" name="remove_whitespace" value="Y" id="remove_whitespace_yes" />
                          제거
-                     </label>
                  </div>
              </td>
          </tr>
@@ -154,12 +148,10 @@
                         printColor("border", "{$tpl_path}/images/blank.gif");
                     </script>
                 </div>
-
                 <ul class="buttonLeft">
                     <li><img src="./images/border_solid.gif" alt="blank" class="border_preview_color" id="border_preview_color" /></li>
                     <li>#<input type="text" id="border_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->border_color->value)-->{$component_info->extra_vars->border_color->value}<!--@else-->000000<!--@end-->" onkeyup="manual_select_color('border',this)"/></li>
                 </ul>
-
             </td>
         </tr>
         <tr>
