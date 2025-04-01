@@ -28,6 +28,7 @@ function getTextbox() {
     var border_thickness = node.getAttribute("border_thickness");
     var border_color = node.getAttribute("border_color");
     var bg_color = node.getAttribute("bg_color");
+	var remove_whitespace = node.getAttribute("remove_whitespace");
 
     if(use_folder=="Y") xGetElementById("textbox_use").checked = true;
     else xGetElementById("textbox_use").checked = false;
@@ -80,6 +81,13 @@ function getTextbox() {
 
     select_color('border', border_color);
     select_color('bg', bg_color);
+    
+     // 빈칸 제거 라디오 버튼 설정
+     if(remove_whitespace=="Y") {
+         xGetElementById("remove_whitespace_yes").checked = true;
+     } else {
+         xGetElementById("remove_whitespace_no").checked = true;
+     }
 }
 
 /* 추가 버튼 클릭시 부모창의 위지윅 에디터에 인용구 추가 */
@@ -122,6 +130,10 @@ function insertTextbox() {
     var border_color = xGetElementById("border_color_input").value;
 
     var bg_color = xGetElementById("bg_color_input").value;
+    
+     // 새로운 빈칸 제거 기능 추가
+     var remove_whitespace = "N";
+     if(xGetElementById("remove_whitespace_yes").checked) remove_whitespace = "Y";
 
     var content = "";
     if(selected_node) content = xInnerHtml(selected_node);
@@ -155,6 +167,8 @@ function insertTextbox() {
         + '" bold="' + bold + '" color="' + color + '" font="' + font + '" lineheight="' + lineheight
         + '" linebreak="' + linebreak + '" margin="' + margin + '" padding="' + padding + '" border_style="' + border_style
         + '" border_thickness="' + border_thickness + '" border_color="' + border_color
+        + '" bg_color="' + bg_color + '" remove_whitespace="' + remove_whitespace 
+        + '" style="' + style + '">' + content + '</div><br />';
         + '" bg_color="' + bg_color + '" style="' + style + '">' + content + '</div><br />';
 
     if (selected_node) {
@@ -172,6 +186,7 @@ function insertTextbox() {
         selected_node.setAttribute("border_thickness", border_thickness);
         selected_node.setAttribute("border_color", border_color);
         selected_node.setAttribute("bg_color", bg_color);
+		selected_node.setAttribute("remove_whitespace", remove_whitespace);
         selected_node.setAttribute("style", style);
 
         if (font.length) selected_node.style.fontFamily = font;
@@ -293,4 +308,4 @@ function toggle_folder(obj) {
   setFixedPopupSize();
 }
 
-xAddEventListener(window, "load", getTextbox);
+ xAddEventListener(window, "load", getTextbox);

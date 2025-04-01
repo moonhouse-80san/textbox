@@ -56,10 +56,18 @@
             $border_thickness = $xml_obj->attrs->border_thickness;
             $border_color = $xml_obj->attrs->border_color;
             $bg_color = $xml_obj->attrs->bg_color;
+			$remove_whitespace = $xml_obj->attrs->remove_whitespace;
             $body = $xml_obj->body;
 
+			// 'Y'로 설정된 경우에만 빈칸 제거 기능 적용
+			if($remove_whitespace == 'Y') {
+				// HTML 엔티티 및 공백 처리
+				// 연속된 &nbsp; 제거
+				$body = preg_replace('/(&nbsp;)+/', ' ', $body);
+			}
+
             $output = "";
-            $style = sprintf('margin: %spx; padding: %spx; background-color: #%s;', $margin, $padding, $bg_color);
+            $style = sprintf('margin: %spx; margin-top: 26px; padding: %spx; background-color: #%s;', $margin, $padding, $bg_color);
             if ($linebreak == 'N') $style = "white-space: nowrap; overflow: auto; $style";
             if ($lineheight) $style = "line-height: $lineheight; $style";
             if ($font) $style = "font-family: $font; $style";
@@ -75,7 +83,7 @@
                         $style .= "border-left: ". $border_thickness."px solid #". $border_color.";";
                     break;
                 case "left_dotted" :
-                        $style .= "border-elft: ". $border_thickness."px dotted #". $border_color.";";
+                        $style .= "border-left: ". $border_thickness."px dotted #". $border_color.";";
                     break;
             }
 
@@ -91,6 +99,9 @@
                 
                 // 복사 버튼 텍스트 제거 (버튼 텍스트가 복사되지 않도록)
                 content = content.replace("복사하기", "").trim();
+
+				// 원본 소스 코드 가져오기 (data-source 속성에서)
+				var sourceCode = box.getAttribute("data-source");
                 
                 // 임시 textarea 생성
                 var textarea = document.createElement("textarea");
@@ -117,8 +128,8 @@
             }
 
             // 복사 버튼 스타일
-            $button_style = 'position: absolute; top: 5px; right: 5px; padding: 3px 8px; ' .
-                           'background-color: #f8f8f8; border: 1px solid #ddd; ' .
+            $button_style = 'position: absolute; top: -26px; right: 0px; padding: 3px 8px; ' .
+                           'background-color: #F7F7F6; border: 1px solid #999; ' .
                            'border-radius: 3px; cursor: pointer; font-size: 12px;';
 
             if($use_folder == "Y") {
