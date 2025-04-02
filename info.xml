@@ -2,11 +2,16 @@
 <component version="0.1">
     <title xml:lang="ko">글 상자 작성</title>
 	<title xml:lang="en">Text Box</title>
+    <version>1.1</version>
+    <date>2025-04-02</date>
     <author email_address="hhyoon@kldp.org" link="http://mooo.org" date="2008. 5. 14">
         <name xml:lang="ko">mooo</name>
         <name xml:lang="en">mooo</name>
         <description xml:lang="ko">특정 범위를 글 상자로 꾸밀 수 있습니다. 글꼴, 외곽선의 종류나 색상, 굵기를 수정할 수 있으며 열기/닫기 기능을 가진 폴더 기능을 만들 수 있습니다.</description>
         <description xml:lang="en">You can decorate specific range as a text box. The style, color or thickness of outline can be modified and folder system which has open/close function can be made.</description>
+    </author>
+    <author email_address="80san@moonhouse.co.kr" link="https://moonhouse.co.kr">
+        <name xml:lang="ko">80san</name>
     </author>
     <extra_vars>
         <var name="font" type="text">

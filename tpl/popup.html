@@ -64,13 +64,13 @@
         <tr>
             <th scope="row">{$lang->textbox_font}</th>
             <td colspan="5">
-                <input type="text" id="textbox_font" size="60" maxlength="80" class="inputTypeText" value="<!--@if($component_info->extra_vars->font->value)-->{$component_info->extra_vars->font->value}<!--@else-->Consolas, Courier New, sans-serif<!--@end-->" />
+                <input type="text" id="textbox_font" style="width:400px;" class="inputTypeText" value="<!--@if($component_info->extra_vars->font->value)-->{$component_info->extra_vars->font->value}<!--@else-->Consolas, Courier New, sans-serif<!--@end-->" />
             </td>
         </tr>
         <tr>
             <th scope="row">{$lang->textbox_lineheight}</th>
             <td colspan="5">
-                <input type="text" id="textbox_lineheight" size="60" maxlength="80" class="inputTypeText" value="<!--@if($component_info->extra_vars->lineheight->value)-->{$component_info->extra_vars->lineheight->value}<!--@else-->1.6<!--@end-->" />
+                <input type="text" id="textbox_lineheight" style="width:30px;" class="inputTypeText" value="<!--@if($component_info->extra_vars->lineheight->value)-->{$component_info->extra_vars->lineheight->value}<!--@else-->1.6<!--@end-->" />
             </td>
         </tr>
         <tr>
@@ -81,11 +81,11 @@
         </tr>
         <tr>
             <th scope="row">{$lang->textbox_padding}</th>
-            <td><input type="text" class="inputTypeText" size="2" id="textbox_padding" value="<!--@if($component_info->extra_vars->padding->value)-->{$component_info->extra_vars->padding->value}<!--@else-->5<!--@end-->" />px</td>
+            <td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_padding" value="<!--@if($component_info->extra_vars->padding->value)-->{$component_info->extra_vars->padding->value}<!--@else-->5<!--@end-->" />px</td>
             <th scope="row">{$lang->textbox_margin}</th>
-            <td><input type="text" class="inputTypeText" size="2" id="textbox_margin" value="<!--@if($component_info->extra_vars->margin->value)-->{$component_info->extra_vars->margin->value}<!--@else-->5<!--@end-->" />px</td>
+            <td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_margin" value="<!--@if($component_info->extra_vars->margin->value)-->{$component_info->extra_vars->margin->value}<!--@else-->5<!--@end-->" />px</td>
             <th scope="row">{$lang->textbox_border_thickness}</th>
-            <td><input type="text" class="inputTypeText" size="1" id="border_thickness" value="<!--@if($component_info->extra_vars->border_width->value)-->{$component_info->extra_vars->border_width->value}<!--@else-->1<!--@end-->" />px</td>
+            <td><input type="text" class="inputTypeText" style="width:30px;" id="border_thickness" value="<!--@if($component_info->extra_vars->border_width->value)-->{$component_info->extra_vars->border_width->value}<!--@else-->1<!--@end-->" />px</td>
         </tr>
         <tr>
             <th scope="row">{$lang->textbox_border_style}</th>
@@ -172,9 +172,9 @@
     </div>
 
     <div id="popFooter" class="tCenter">
-        <a href="#" onclick="insertTextbox()" class="button"><span>{$lang->cmd_insert}</span></a>
-        <a href="#" onclick="window.close(); return false;" class="button"><span>{$lang->cmd_close}</span></a>
-        <a href="#" onclick="winopen('./?module=editor&amp;act=dispEditorComponentInfo&amp;component_name={$component_info->component_name}','ComponentInfo','left=10,top=10,width=10,height=10,resizable=no,scrollbars=no,toolbars=no');return false;" class="button"><span>{$lang->about_component}</span></a>
+        <a href="#" onclick="insertTextbox()" class="button"><button>{$lang->cmd_insert}</button></a>
+        <a href="#" onclick="window.close(); return false;" class="button"><button>{$lang->cmd_close}</button></a>
+        <a href="#" onclick="winopen('./?module=editor&amp;act=dispEditorComponentInfo&amp;component_name={$component_info->component_name}','ComponentInfo','left=10,top=10,width=10,height=10,resizable=no,scrollbars=no,toolbars=no');return false;" class="button"><button>{$lang->about_component}</button></a>
     </div>
 
 </form>
