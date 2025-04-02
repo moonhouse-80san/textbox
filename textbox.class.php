@@ -8,13 +8,13 @@
     class textbox extends EditorHandler {
 
         // editor_sequence 는 에디터에서 필수로 달고 다녀야 함....
-        var $editor_sequence = 0;
-        var $component_path = '';
+        protected int $editor_sequence = 0;
+        protected string $component_path = '';
 
         /**
          * @brief editor_sequence과 컴포넌트의 경로를 받음
          **/
-        function textbox($editor_sequence, $component_path) {
+        public function __construct(int $editor_sequence, string $component_path) {
             $this->editor_sequence = $editor_sequence;
             $this->component_path = $component_path;
         }
@@ -22,14 +22,14 @@
         /**
          * @brief popup window요청시 popup window에 출력할 내용을 추가하면 된다
          **/
-        function getPopupContent() {
+        public function getPopupContent(): string {
             // 템플릿을 미리 컴파일해서 컴파일된 소스를 return
             $tpl_path = $this->component_path.'tpl';
             $tpl_file = 'popup.html';
 
             Context::set("tpl_path", $tpl_path);
 
-            $oTemplate = &TemplateHandler::getInstance();
+            $oTemplate = TemplateHandler::getInstance();
             return $oTemplate->compile($tpl_path, $tpl_file);
         }
 
@@ -39,7 +39,7 @@
          * 이미지나 멀티미디어, 설문등 고유 코드가 필요한 에디터 컴포넌트는 고유코드를 내용에 추가하고 나서
          * DocumentModule::transContent() 에서 해당 컴포넌트의 transHtml() method를 호출하여 고유코드를 html로 변경
          **/
-        function transHTML($xml_obj) {
+        public function transHTML($xml_obj): string {
             $use_folder = $xml_obj->attrs->use_folder;
             $folder_opener = $xml_obj->attrs->folder_opener;
             if(!$folder_opener) $folder_opener = "more...";
@@ -97,7 +97,7 @@
             }
 
             // 각 박스에 고유 ID 부여
-            $box_id = 'textbox_' . rand(1000000, 9999999);
+            $box_id = 'textbox_' . random_int(1000000, 9999999);
 
             // 복사 버튼을 위한 JavaScript 함수 추가
             $copy_button_script = '
@@ -139,14 +139,15 @@
             // 복사 버튼 스타일
             $button_style = 'position: absolute; top: -26px; right: 0px; padding: 3px 8px; ' .
                            'background-color: #F7F7F6; border: 1px solid #999; ' .
-                           'border-radius: 3px; cursor: pointer; font-size: 12px;';
+                           'border-radius: 3px; cursor: pointer; font-size: 12px; color:#444;';
 
             if($use_folder == "Y") {
-                $folder_id = rand(1000000,9999999);
+                $folder_id = random_int(1000000, 9999999);
 
                 $folder_opener = str_replace("&amp;","&",$folder_opener);
                 $folder_closer = str_replace("&amp;","&",$folder_closer);
 
+                $class = "";
                 if($bold == "Y") $class = "bold";
                 switch($color) {
                     case "red" :
@@ -169,12 +170,25 @@
                 $output .= sprintf('<div id="folder_open_%s" style="margin: %s; display: block;"><a class="%s" href="#" onclick="zbxe_folder_open(\'%s\');return false;">%s</a></div>', $folder_id, $folder_margin, $class, $folder_id, $folder_opener);
                 $output .= sprintf('<div id="folder_close_%s" style="margin: %s; display: none;"><a class="%s" href="#" onclick="zbxe_folder_close(\'%s\');return false;">%s</a></div>', $folder_id, $folder_margin, $class, $folder_id, $folder_closer);
 
-                $output .= sprintf('<div style="%s" id="folder_%s">%s<button onclick="copyTextboxContent(\'folder_%s\')" style="%s">복사하기</button></div>', $style, $folder_id, $body, $folder_id, $button_style);
+                $output .= sprintf('<div style="%s" id="folder_%s" data-source="%s">%s<button onclick="copyTextboxContent(\'folder_%s\')" style="%s">복사하기</button></div>', 
+                    $style, 
+                    $folder_id, 
+                    htmlspecialchars($body, ENT_QUOTES), 
+                    $body, 
+                    $folder_id, 
+                    $button_style
+                );
             } else {
-                $output .= sprintf('<div style="%s position: relative;" id="%s">%s<button onclick="copyTextboxContent(\'%s\')" style="%s">복사하기</button></div>', $style, $box_id, $body, $box_id, $button_style);
+                $output .= sprintf('<div style="%s position: relative;" id="%s" data-source="%s">%s<button onclick="copyTextboxContent(\'%s\')" style="%s">복사하기</button></div>', 
+                    $style, 
+                    $box_id, 
+                    htmlspecialchars($body, ENT_QUOTES), 
+                    $body, 
+                    $box_id, 
+                    $button_style
+                );
             }
             return $output;
         }
-
     }
 ?>
