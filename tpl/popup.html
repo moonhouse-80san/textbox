@@ -2,8 +2,8 @@
 <!--%import("popup.css")-->
 <!--%import("../lang")-->
 
-<div id="popHeadder">
-    <h3>{$component_info->title} ver. {$component_info->version}</h3>
+<div class="x_modal-header">
+	<h1>{$component_info->title} ver. {$component_info->version}</h1>
 </div>
 
 <form action="./" method="get" onSubmit="return false" id="fo">
@@ -150,7 +150,7 @@
                 </div>
                 <ul class="buttonLeft">
                     <li><img src="./images/border_solid.gif" alt="blank" class="border_preview_color" id="border_preview_color" /></li>
-                    <li>#<input type="text" id="border_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->border_color->value)-->{$component_info->extra_vars->border_color->value}<!--@else-->000000<!--@end-->" onkeyup="manual_select_color('border',this)"/></li>
+                    <li>#<input type="text" id="border_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->border_color->value)-->{$component_info->extra_vars->border_color->value}<!--@else-->999999<!--@end-->" onkeyup="manual_select_color('border',this)"/></li>
                 </ul>
             </td>
         </tr>
@@ -164,22 +164,24 @@
                 </div>
                 <ul class="buttonLeft">
                     <li><img src="./images/blank.gif" alt="blank" class="bg_preview_color" id="bg_preview_color" /></li>
-                    <li>#<input type="text" id="bg_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->bg_color->value)-->{$component_info->extra_vars->bg_color->value}<!--@else-->FFFFFF<!--@end-->" onkeyup="manual_select_color('bg',this)"/></li>
+                    <li>#<input type="text" id="bg_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->bg_color->value)-->{$component_info->extra_vars->bg_color->value}<!--@else-->F7F7F6<!--@end-->" onkeyup="manual_select_color('bg',this)"/></li>
                 </ul>
             </td>
         </tr>
         </table>
     </div>
 
-    <div id="popFooter" class="tCenter">
-        <a href="#" onclick="insertTextbox()" class="button"><button>{$lang->cmd_insert}</button></a>
-        <a href="#" onclick="window.close(); return false;" class="button"><button>{$lang->cmd_close}</button></a>
-        <a href="#" onclick="winopen('./?module=editor&amp;act=dispEditorComponentInfo&amp;component_name={$component_info->component_name}','ComponentInfo','left=10,top=10,width=10,height=10,resizable=no,scrollbars=no,toolbars=no');return false;" class="button"><button>{$lang->about_component}</button></a>
-    </div>
+	<div class="x_clearfix btnArea">
+		<div class="x_pull-right">
+			<a href="#" onclick="insertTextbox()"><button type="button" id="btn_insert" class="x_btn x_btn-primary">{$lang->cmd_insert}</button></a>
+			<a href="#" onclick="window.close(); return false;"><button type="button" id="btn_insert" class="x_btn x_btn-primary">{$lang->cmd_close}</button></a>
+			<a class="x_btn" href="{getUrl('','module','editor','act','dispEditorComponentInfo','component_name',$component_info->component_name)}" target="_blank" onclick="window.open(this.href,'ComponentInfo','width=10,height=10');return false;">{$lang->about_component}</a>
+		</div>
+	</div>
 
 </form>
 
 <script type="text/javascript">
-manual_select_color('border', xGetElementById('border_color_input'));
-manual_select_color('bg', xGetElementById('bg_color_input'));
+	manual_select_color('border', xGetElementById('border_color_input'));
+	manual_select_color('bg', xGetElementById('bg_color_input'));
 </script>
