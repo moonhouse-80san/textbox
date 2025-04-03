@@ -56,15 +56,5 @@
             <description xml:lang="ko">기본 배경 색상 코드 여섯자리를 입력해주세요.</description>
             <description xml:lang="en">Please enter the default color code of background.</description>
         </var>
-		<var name="remove_whitespace" type="radio">
-			<title xml:lang="ko">빈칸 제거 기능</title>
-			<description xml:lang="ko">글의 앞부분의 빈칸을 제거합니다.</description>
-			<options value="N">
-				<title>제거안함(기본)</title>
-			</options>
-			<options value="Y">
-				<title>제거</title>
-			</options>
-		</var>
     </extra_vars>
 </component>
