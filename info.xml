@@ -1,60 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component version="0.1">
-    <title xml:lang="ko">글 상자 작성</title>
+	<title xml:lang="ko">글 상자 작성</title>
 	<title xml:lang="en">Text Box</title>
-    <version>1.1</version>
-    <date>2025-04-02</date>
-    <author email_address="hhyoon@kldp.org" link="http://mooo.org" date="2008. 5. 14">
-        <name xml:lang="ko">mooo</name>
-        <name xml:lang="en">mooo</name>
-        <description xml:lang="ko">특정 범위를 글 상자로 꾸밀 수 있습니다. 글꼴, 외곽선의 종류나 색상, 굵기를 수정할 수 있으며 열기/닫기 기능을 가진 폴더 기능을 만들 수 있습니다.</description>
-        <description xml:lang="en">You can decorate specific range as a text box. The style, color or thickness of outline can be modified and folder system which has open/close function can be made.</description>
-    </author>
-    <author email_address="80san@moonhouse.co.kr" link="https://moonhouse.co.kr">
-        <name xml:lang="ko">80san</name>
-    </author>
-    <extra_vars>
-        <var name="font" type="text">
-            <title xml:lang="ko">기본 글꼴</title>
-            <title xml:lang="en">Default font</title>
-            <description xml:lang="ko">기본 글꼴을 입력해주세요. 콤마(,)로 구분된 여러 개의 글꼴을 입력할 수 있습니다.</description>
-            <description xml:lang="en">Please enter the default fonts.</description>
-        </var>
-        <var name="lineheight" type="text">
-            <title xml:lang="ko">기본 줄 간격</title>
-            <title xml:lang="en">Default line height</title>
-            <description xml:lang="ko">기본 줄 간격을 입력해주세요. 줄 간격의 정확한 의미를 모를 때는 빈 칸으로 남겨두세요.</description>
-            <description xml:lang="en">Please enter the default line height.</description>
-        </var>
-        <var name="padding" type="text">
-            <title xml:lang="ko">기본 내부 여백</title>
-            <title xml:lang="en">Default padding size</title>
-            <description xml:lang="ko">기본 내부 여백 크기를 px 단위로 입력해주세요.</description>
-            <description xml:lang="en">Please enter the default padding size in px.</description>
-        </var>
-        <var name="margin" type="text">
-            <title xml:lang="ko">기본 외부 여백</title>
-            <title xml:lang="en">Default margin size</title>
-            <description xml:lang="ko">기본 외부 여백 크기를 px 단위로 입력해주세요.</description>
-            <description xml:lang="en">Please enter the default margin size in px.</description>
-        </var>
-        <var name="border_width" type="text">
-            <title xml:lang="ko">기본 외곽선 두께</title>
-            <title xml:lang="en">Default border width</title>
-            <description xml:lang="ko">기본 외곽선 두께를 px 단위로 입력해주세요.</description>
-            <description xml:lang="en">Please enter the default margin size in px.</description>
-        </var>
-        <var name="border_color" type="text">
-            <title xml:lang="ko">기본 외곽선 색상</title>
-            <title xml:lang="en">Default color of borders</title>
-            <description xml:lang="ko">기본 외곽선 색상 코드 여섯자리를 입력해주세요.</description>
-            <description xml:lang="en">Please enter the default color code of borders.</description>
-        </var>
-        <var name="bg_color" type="text">
-            <title xml:lang="ko">기본 배경 색상</title>
-            <title xml:lang="en">Default color of background</title>
-            <description xml:lang="ko">기본 배경 색상 코드 여섯자리를 입력해주세요.</description>
-            <description xml:lang="en">Please enter the default color code of background.</description>
-        </var>
-    </extra_vars>
+	<version>1.2</version>
+	<date>2025-04-05</date>
+	<author email_address="hhyoon@kldp.org" link="http://mooo.org" date="2008. 5. 14">
+		<name xml:lang="ko">mooo</name>
+		<name xml:lang="en">mooo</name>
+		<description xml:lang="ko">특정 범위를 글 상자로 꾸밀 수 있습니다. 글꼴, 외곽선의 종류나 색상, 굵기를 수정할 수 있으며 열기/닫기 기능을 가진 폴더 기능을 만들 수 있습니다.</description>
+		<description xml:lang="en">You can decorate specific range as a text box. The style, color or thickness of outline can be modified and folder system which has open/close function can be made.</description>
+	</author>
+	<author email_address="80san@moonhouse.co.kr" link="https://moonhouse.co.kr">
+		<name xml:lang="ko">80san</name>
+	</author>
+	<extra_vars>
+		<var name="font" type="text">
+			<title xml:lang="ko">기본 글꼴</title>
+			<title xml:lang="en">Default font</title>
+			<description xml:lang="ko">기본 글꼴을 입력해주세요. 콤마(,)로 구분된 여러 개의 글꼴을 입력할 수 있습니다.</description>
+			<description xml:lang="en">Please enter the default fonts.</description>
+		</var>
+		<var name="lineheight" type="text">
+			<title xml:lang="ko">기본 줄 간격</title>
+			<title xml:lang="en">Default line height</title>
+			<description xml:lang="ko">기본 줄 간격을 입력해주세요. 줄 간격의 정확한 의미를 모를 때는 빈 칸으로 남겨두세요.</description>
+			<description xml:lang="en">Please enter the default line height.</description>
+		</var>
+		<var name="padding" type="text">
+			<title xml:lang="ko">기본 내부 여백</title>
+			<title xml:lang="en">Default padding size</title>
+			<description xml:lang="ko">기본 내부 여백 크기를 px 단위로 입력해주세요.</description>
+			<description xml:lang="en">Please enter the default padding size in px.</description>
+		</var>
+		<var name="margin" type="text">
+			<title xml:lang="ko">기본 외부 여백</title>
+			<title xml:lang="en">Default margin size</title>
+			<description xml:lang="ko">기본 외부 여백 크기를 px 단위로 입력해주세요.</description>
+			<description xml:lang="en">Please enter the default margin size in px.</description>
+		</var>
+		<var name="border_width" type="text">
+			<title xml:lang="ko">기본 외곽선 두께</title>
+			<title xml:lang="en">Default border width</title>
+			<description xml:lang="ko">기본 외곽선 두께를 px 단위로 입력해주세요.</description>
+			<description xml:lang="en">Please enter the default margin size in px.</description>
+		</var>
+		<var name="border_color" type="text">
+			<title xml:lang="ko">기본 외곽선 색상</title>
+			<title xml:lang="en">Default color of borders</title>
+			<description xml:lang="ko">기본 외곽선 색상 코드 여섯자리를 입력해주세요.</description>
+			<description xml:lang="en">Please enter the default color code of borders.</description>
+		</var>
+		<var name="bg_color" type="text">
+			<title xml:lang="ko">기본 배경 색상</title>
+			<title xml:lang="en">Default color of background</title>
+			<description xml:lang="ko">기본 배경 색상 코드 여섯자리를 입력해주세요.</description>
+			<description xml:lang="en">Please enter the default color code of background.</description>
+		</var>
+		<var name="text_color" type="text">
+			<title xml:lang="ko">기본 글꼴 색상</title>
+			<title xml:lang="en">Default color of text</title>
+			<description xml:lang="ko">기본 글꼴 색상 코드 여섯자리를 입력해주세요.</description>
+			<description xml:lang="en">Please enter the default color code of text.</description>
+		</var>
+	</extra_vars>
 </component>

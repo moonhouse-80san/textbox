@@ -7,169 +7,183 @@
 </div>
 
 <form action="./" method="get" onSubmit="return false" id="fo">
-    <div id="popBody">
-        <table cellspacing="0" class="adminTable">
-        <col width="120" />
-        <col />
-        <col />
-        <col />
-        <col />
-        <col />
-        <tr>
-            <th scope="row">{$lang->textbox_use_folder}</th>
-            <td colspan="5">
-                <input type="checkbox" id="textbox_use" value="Y" onclick="toggle_folder(this)" />
+	<div id="popBody">
+		<table cellspacing="0" class="adminTable">
+			<col width="120" />
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+			<tr>
+				<th scope="row">{$lang->textbox_use_folder}</th>
+				<td colspan="5">
+					<input type="checkbox" id="textbox_use" value="Y" onclick="toggle_folder(this)" />
 
-                <div id="folder_area" style="display:none">
-                    <table cellspacing="0" class="adminTable gap1">
-                    <col width="150" />
-                    <col />
-                    <tr>
-                        <th scope="row">{$lang->textbox_opener}</th>
-                        <td><input type="text" class="inputTypeText" id="textbox_opener" value="{$lang->textbox_cmd_opener}" /></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">{$lang->textbox_closer}</th>
-                        <td><input type="text" class="inputTypeText" id="textbox_closer" value="{$lang->textbox_cmd_closer}" /></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">{$lang->folder_text_bold}</th>
-                        <td><input type="checkbox" name="bold" value="Y" id="textbox_bold" /> <label for="textbox_bold">{$lang->about_folder_text_bold}</label></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">{$lang->folder_text_color}</th>
-                        <td>
-                            <div class="editor_link_type" >
-                                <input type="radio" name="color" value="blue" id="textbox_color_blue" />
-                                <label for="textbox_color_blue" class="editor_blue_text">{$lang->folder_text_color_blue}</label>
-                            </div>
-                            <div class="editor_link_type" >
-                                <input type="radio" name="color" value="red" id="textbox_color_red" />
-                                <label for="textbox_color_red" class="editor_red_text">{$lang->folder_text_color_red}</label>
-                            </div>
-                            <div class="editor_link_type" >
-                                <input type="radio" name="color" value="yellow" id="textbox_color_yellow" />
-                                <label for="textbox_color_yellow" class="editor_yellow_text">{$lang->folder_text_color_yellow}</label>
-                            </div>
-                            <div class="editor_link_type" >
-                                <input type="radio" name="color" value="green" id="textbox_color_green" />
-                                <label for="textbox_color_green" class="editor_green_text">{$lang->folder_text_color_green}</label>
-                            </div>
-                        </td>
-                    </tr>
-                    </table>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">{$lang->textbox_font}</th>
-            <td colspan="5">
-                <input type="text" id="textbox_font" style="width:400px;" class="inputTypeText" value="<!--@if($component_info->extra_vars->font->value)-->{$component_info->extra_vars->font->value}<!--@else-->Consolas, Courier New, sans-serif<!--@end-->" />
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">{$lang->textbox_lineheight}</th>
-            <td colspan="5">
-                <input type="text" id="textbox_lineheight" style="width:30px;" class="inputTypeText" value="<!--@if($component_info->extra_vars->lineheight->value)-->{$component_info->extra_vars->lineheight->value}<!--@else-->1.6<!--@end-->" />
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">{$lang->textbox_linebreak}</th>
-            <td colspan="5">
-                <input type="checkbox" name="linebreak" value="Y" id="textbox_linebreak" checked="checked" /> <label for="textbox_linebreak">{$lang->about_linebreak}</label>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">{$lang->textbox_padding}</th>
-            <td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_padding" value="<!--@if($component_info->extra_vars->padding->value)-->{$component_info->extra_vars->padding->value}<!--@else-->5<!--@end-->" />px</td>
-            <th scope="row">{$lang->textbox_margin}</th>
-            <td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_margin" value="<!--@if($component_info->extra_vars->margin->value)-->{$component_info->extra_vars->margin->value}<!--@else-->5<!--@end-->" />px</td>
-            <th scope="row">{$lang->textbox_border_thickness}</th>
-            <td><input type="text" class="inputTypeText" style="width:30px;" id="border_thickness" value="<!--@if($component_info->extra_vars->border_width->value)-->{$component_info->extra_vars->border_width->value}<!--@else-->1<!--@end-->" />px</td>
-        </tr>
-        <tr>
-            <th scope="row">{$lang->textbox_border_style}</th>
-            <td colspan="5">
-                <div class="border_type">
-                    <input type="radio" name="border_style" value="" id="border_style_none" />
-                    <label for="border_style_none">
-                        <img src="./images/blank.gif" class="border_preview_none_color" alt="blank" />
-                        {$lang->textbox_border_style_list[0]}
-                    </label>
-                </div>
-                <div class="border_type">
-                    <input type="radio" name="border_style" value="solid" id="border_style_solid" checked="checked" />
-                    <label for="border_style_solid">
-                        <img src="./images/border_solid.gif" class="border_preview_color" id="border_style_solid_icon" alt="solid" />
-                        {$lang->textbox_border_style_list[1]}
-                    </label>
-                </div>
-                <div class="border_type">
-                    <input type="radio" name="border_style" value="dotted" id="border_style_dotted" />
-                    <label for="border_style_dotted">
-                        <img src="./images/border_dotted.gif" class="border_preview_color" id="border_style_dotted_icon" alt="dotted" />
-                        {$lang->textbox_border_style_list[2]}
-                    </label>
-                </div>
-                <div class="border_type">
-                    <input type="radio" name="border_style" value="left_solid" id="border_style_left_solid" />
-                    <label for="border_style_left_solid">
-                        <img src="./images/border_left_solid.gif" class="border_preview_color" id="border_style_left_solid_icon" alt="left solid"/>
-                        {$lang->textbox_border_style_list[3]}
-                    </label>
-                </div>
-                <div class="border_type">
-                    <input type="radio" name="border_style" value="left_dotted" id="border_style_left_dotted" />
-                    <label for="border_style_left_dotted">
-                        <img src="./images/border_left_dotted.gif" class="border_preview_color" id="border_style_left_dotted_icon" alt="left dotted"/>
-                        {$lang->textbox_border_style_list[4]}
-                    </label>
-                </div>
-            </td>
-        </tr>
-        <tr>
-             <th scope="row">빈칸 제거 기능</th>
-             <td colspan="5">
-                 <div class="remove_type">
-                     <input type="radio" name="remove_whitespace" value="N" id="remove_whitespace_no" checked="checked" />
-                         제거안함
-                 </div>
-                 <div class="remove_type">
-                     <input type="radio" name="remove_whitespace" value="Y" id="remove_whitespace_yes" />
-                         제거
-                 </div>
-             </td>
-         </tr>
-        <tr>
-            <th scope="row">{$lang->textbox_border_color}</th>
-            <td colspan="5">
-                <div class="editor_color_box">
-                    <script type="text/javascript">
-                        printColor("border", "{$tpl_path}/images/blank.gif");
-                    </script>
-                </div>
-                <ul class="buttonLeft">
-                    <li><img src="./images/border_solid.gif" alt="blank" class="border_preview_color" id="border_preview_color" /></li>
-                    <li>#<input type="text" id="border_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->border_color->value)-->{$component_info->extra_vars->border_color->value}<!--@else-->999999<!--@end-->" onkeyup="manual_select_color('border',this)"/></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">{$lang->textbox_bg_color}</th>
-            <td colspan="5">
-                <div class="editor_color_box">
-                    <script type="text/javascript">
-                        printColor("bg", "{$tpl_path}/images/blank.gif");
-                    </script>
-                </div>
-                <ul class="buttonLeft">
-                    <li><img src="./images/blank.gif" alt="blank" class="bg_preview_color" id="bg_preview_color" /></li>
-                    <li>#<input type="text" id="bg_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->bg_color->value)-->{$component_info->extra_vars->bg_color->value}<!--@else-->F7F7F6<!--@end-->" onkeyup="manual_select_color('bg',this)"/></li>
-                </ul>
-            </td>
-        </tr>
-        </table>
-    </div>
+					<div id="folder_area" style="display:none">
+						<table cellspacing="0" class="adminTable gap1">
+						<col width="150" />
+						<col />
+						<tr>
+							<th scope="row">{$lang->textbox_opener}</th>
+							<td><input type="text" class="inputTypeText" id="textbox_opener" value="{$lang->textbox_cmd_opener}" /></td>
+						</tr>
+						<tr>
+							<th scope="row">{$lang->textbox_closer}</th>
+							<td><input type="text" class="inputTypeText" id="textbox_closer" value="{$lang->textbox_cmd_closer}" /></td>
+						</tr>
+						<tr>
+							<th scope="row">{$lang->folder_text_bold}</th>
+							<td><input type="checkbox" name="bold" value="Y" id="textbox_bold" /> <label for="textbox_bold">{$lang->about_folder_text_bold}</label></td>
+						</tr>
+						<tr>
+							<th scope="row">{$lang->folder_text_color}</th>
+							<td>
+								<div class="editor_link_type" >
+									<input type="radio" name="color" value="blue" id="textbox_color_blue" />
+									<label for="textbox_color_blue" class="editor_blue_text">{$lang->folder_text_color_blue}</label>
+								</div>
+								<div class="editor_link_type" >
+									<input type="radio" name="color" value="red" id="textbox_color_red" />
+									<label for="textbox_color_red" class="editor_red_text">{$lang->folder_text_color_red}</label>
+								</div>
+								<div class="editor_link_type" >
+									<input type="radio" name="color" value="yellow" id="textbox_color_yellow" />
+									<label for="textbox_color_yellow" class="editor_yellow_text">{$lang->folder_text_color_yellow}</label>
+								</div>
+								<div class="editor_link_type" >
+									<input type="radio" name="color" value="green" id="textbox_color_green" />
+									<label for="textbox_color_green" class="editor_green_text">{$lang->folder_text_color_green}</label>
+								</div>
+							</td>
+						</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->textbox_font}</th>
+				<td colspan="5">
+					<input type="text" id="textbox_font" style="width:400px;" class="inputTypeText" value="<!--@if($component_info->extra_vars->font->value)-->{$component_info->extra_vars->font->value}<!--@else-->Consolas, Courier New, sans-serif<!--@end-->" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->textbox_lineheight}</th>
+				<td colspan="5">
+					<input type="text" id="textbox_lineheight" style="width:30px;" class="inputTypeText" value="<!--@if($component_info->extra_vars->lineheight->value)-->{$component_info->extra_vars->lineheight->value}<!--@else-->1.6<!--@end-->" />
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->textbox_linebreak}</th>
+				<td colspan="5">
+					<input type="checkbox" name="linebreak" value="Y" id="textbox_linebreak" checked="checked" /> <label for="textbox_linebreak">{$lang->about_linebreak}</label>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->textbox_padding}</th>
+				<td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_padding" value="<!--@if($component_info->extra_vars->padding->value)-->{$component_info->extra_vars->padding->value}<!--@else-->5<!--@end-->" />px</td>
+				<th scope="row">{$lang->textbox_margin}</th>
+				<td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_margin" value="<!--@if($component_info->extra_vars->margin->value)-->{$component_info->extra_vars->margin->value}<!--@else-->5<!--@end-->" />px</td>
+				<th scope="row">{$lang->textbox_border_thickness}</th>
+				<td><input type="text" class="inputTypeText" style="width:30px;" id="border_thickness" value="<!--@if($component_info->extra_vars->border_width->value)-->{$component_info->extra_vars->border_width->value}<!--@else-->1<!--@end-->" />px</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->textbox_border_style}</th>
+				<td colspan="5">
+					<div class="border_type">
+						<input type="radio" name="border_style" value="" id="border_style_none" />
+						<label for="border_style_none">
+							<img src="./images/blank.gif" class="border_preview_none_color" alt="blank" />
+							{$lang->textbox_border_style_list[0]}
+						</label>
+					</div>
+					<div class="border_type">
+						<input type="radio" name="border_style" value="solid" id="border_style_solid" checked="checked" />
+						<label for="border_style_solid">
+							<img src="./images/border_solid.gif" class="border_preview_color" id="border_style_solid_icon" alt="solid" />
+							{$lang->textbox_border_style_list[1]}
+						</label>
+					</div>
+					<div class="border_type">
+						<input type="radio" name="border_style" value="dotted" id="border_style_dotted" />
+						<label for="border_style_dotted">
+							<img src="./images/border_dotted.gif" class="border_preview_color" id="border_style_dotted_icon" alt="dotted" />
+							{$lang->textbox_border_style_list[2]}
+						</label>
+					</div>
+					<div class="border_type">
+						<input type="radio" name="border_style" value="left_solid" id="border_style_left_solid" />
+						<label for="border_style_left_solid">
+							<img src="./images/border_left_solid.gif" class="border_preview_color" id="border_style_left_solid_icon" alt="left solid"/>
+							{$lang->textbox_border_style_list[3]}
+						</label>
+					</div>
+					<div class="border_type">
+						<input type="radio" name="border_style" value="left_dotted" id="border_style_left_dotted" />
+						<label for="border_style_left_dotted">
+							<img src="./images/border_left_dotted.gif" class="border_preview_color" id="border_style_left_dotted_icon" alt="left dotted"/>
+							{$lang->textbox_border_style_list[4]}
+						</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				 <th scope="row">빈칸 제거 기능</th>
+				 <td colspan="5">
+					 <div class="remove_type">
+						<input type="radio" name="remove_whitespace" value="N" id="remove_whitespace_no" checked="checked" />
+							<label for="remove_whitespace">제거안함</label>
+					 </div>
+					 <div class="remove_type">
+						<input type="radio" name="remove_whitespace" value="Y" id="remove_whitespace_yes" />
+							<label for="remove_whitespace">제거</label>
+					 </div>
+				 </td>
+			 </tr>
+			<tr>
+				<th scope="row">{$lang->textbox_border_color}</th>
+				<td colspan="5">
+					<div class="editor_color_box">
+						<script type="text/javascript">
+							printColor("border", "{$tpl_path}/images/blank.gif");
+						</script>
+					</div>
+					<ul class="buttonLeft">
+						<li><img src="./images/border_solid.gif" alt="blank" class="border_preview_color" id="border_preview_color" /></li>
+						<li>#<input type="text" id="border_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->border_color->value)-->{$component_info->extra_vars->border_color->value}<!--@else-->999999<!--@end-->" onkeyup="manual_select_color('border',this)"/></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">{$lang->textbox_bg_color}</th>
+				<td colspan="5">
+					<div class="editor_color_box">
+						<script type="text/javascript">
+							printColor("bg", "{$tpl_path}/images/blank.gif");
+						</script>
+					</div>
+					<ul class="buttonLeft">
+						<li><img src="./images/blank.gif" alt="blank" class="bg_preview_color" id="bg_preview_color" /></li>
+						<li>#<input type="text" id="bg_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->bg_color->value)-->{$component_info->extra_vars->bg_color->value}<!--@else-->F7F7F6<!--@end-->" onkeyup="manual_select_color('bg',this)"/></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">글 색상</th>
+				<td colspan="5">
+					<div class="editor_color_box">
+						<script type="text/javascript">
+							printColor("text", "{$tpl_path}/images/blank.gif");
+						</script>
+					</div>
+					<ul class="buttonLeft">
+						<li><img src="./images/blank.gif" alt="blank" class="bg_preview_color" id="text_preview_color" /></li>
+						<li>#<input type="text" id="text_color_input" size="6" maxlength="6" class="inputTypeText" value="<!--@if($component_info->extra_vars->text_color->value)-->{$component_info->extra_vars->text_color->value}<!--@else-->000000<!--@end-->" onkeyup="manual_select_color('text',this)"/></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
 
 	<div class="x_clearfix btnArea">
 		<div class="x_pull-right">
@@ -184,4 +198,5 @@
 <script type="text/javascript">
 	manual_select_color('border', xGetElementById('border_color_input'));
 	manual_select_color('bg', xGetElementById('bg_color_input'));
+	manual_select_color('text', xGetElementById('text_color_input'));
 </script>
