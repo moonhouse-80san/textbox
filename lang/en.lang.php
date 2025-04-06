@@ -22,8 +22,14 @@
     $lang->folder_text_color_yellow = "Yellow";
     $lang->folder_text_color_green = "Green";
 
+    $lang->textbox_title = 'Title';
     $lang->textbox_font = 'Font';
+    $lang->text_color = 'Text Color';
     $lang->textbox_lineheight = 'Line Height';
+
+    $lang->remove_type = 'Remove Type';
+    $lang->remove_type_yes = 'Remove Type Yes';
+    $lang->remove_type_no = 'Remove Type No';
 
     $lang->textbox_border_style = "Border Style";
     $lang->textbox_border_style_list = array(

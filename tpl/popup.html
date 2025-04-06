@@ -1,6 +1,6 @@
-<!--%import("popup.js")-->
-<!--%import("popup.css")-->
-<!--%import("../lang")-->
+<load target="./popup.js" />
+<load target="./popup.css" />
+<load target="../lang" />
 
 <div class="x_modal-header">
 	<h1>{$component_info->title} ver. {$component_info->version}</h1>
@@ -62,9 +62,15 @@
 				</td>
 			</tr>
 			<tr>
+				<th scope="row">{$lang->textbox_title}</th>
+				<td colspan="5">
+					<input type="text" id="textbox_title" name="title" style="width:500px;" class="inputTypeText" value="{$title}" />
+				</td>
+			</tr>
+			<tr>
 				<th scope="row">{$lang->textbox_font}</th>
 				<td colspan="5">
-					<input type="text" id="textbox_font" style="width:400px;" class="inputTypeText" value="<!--@if($component_info->extra_vars->font->value)-->{$component_info->extra_vars->font->value}<!--@else-->Consolas, Courier New, sans-serif<!--@end-->" />
+					<input type="text" id="textbox_font" style="width:500px;" class="inputTypeText" value="<!--@if($component_info->extra_vars->font->value)-->{$component_info->extra_vars->font->value}<!--@else-->Consolas, Courier New, sans-serif<!--@end-->" />
 				</td>
 			</tr>
 			<tr>
@@ -81,7 +87,7 @@
 			</tr>
 			<tr>
 				<th scope="row">{$lang->textbox_padding}</th>
-				<td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_padding" value="<!--@if($component_info->extra_vars->padding->value)-->{$component_info->extra_vars->padding->value}<!--@else-->5<!--@end-->" />px</td>
+				<td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_padding" value="<!--@if($component_info->extra_vars->padding->value)-->{$component_info->extra_vars->padding->value}<!--@else-->10<!--@end-->" />px</td>
 				<th scope="row">{$lang->textbox_margin}</th>
 				<td><input type="text" class="inputTypeText" style="width:30px;" id="textbox_margin" value="<!--@if($component_info->extra_vars->margin->value)-->{$component_info->extra_vars->margin->value}<!--@else-->5<!--@end-->" />px</td>
 				<th scope="row">{$lang->textbox_border_thickness}</th>
@@ -128,15 +134,15 @@
 				</td>
 			</tr>
 			<tr>
-				 <th scope="row">빈칸 제거 기능</th>
+				 <th scope="row">{$lang->remove_type}</th>
 				 <td colspan="5">
 					 <div class="remove_type">
 						<input type="radio" name="remove_whitespace" value="N" id="remove_whitespace_no" checked="checked" />
-							<label for="remove_whitespace">제거안함</label>
+							<label for="remove_whitespace">{$lang->remove_type_no}</label>
 					 </div>
 					 <div class="remove_type">
 						<input type="radio" name="remove_whitespace" value="Y" id="remove_whitespace_yes" />
-							<label for="remove_whitespace">제거</label>
+							<label for="remove_whitespace">{$lang->remove_type_yes}</label>
 					 </div>
 				 </td>
 			 </tr>
@@ -169,7 +175,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row">글 색상</th>
+				<th scope="row">{$lang->text_color}</th>
 				<td colspan="5">
 					<div class="editor_color_box">
 						<script type="text/javascript">

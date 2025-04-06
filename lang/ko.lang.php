@@ -22,10 +22,16 @@
     $lang->folder_text_color_yellow = "노란색";
     $lang->folder_text_color_green = "녹색";
 
+    $lang->textbox_title = '제목';
     $lang->textbox_font = '글꼴';
+    $lang->text_color = '글 색상';
     $lang->textbox_lineheight = '줄 간격';
     $lang->textbox_linebreak = '줄 바꿈';
     $lang->about_linebreak = '긴 줄의 경우 줄 바꿈이 일어나도록 합니다.';
+
+    $lang->remove_type = '빈칸 제거 기능';
+    $lang->remove_type_yes = '제거';
+    $lang->remove_type_no = '제거안함';
 
     $lang->textbox_border_style = "테두리 종류";
     $lang->textbox_border_style_list = array(

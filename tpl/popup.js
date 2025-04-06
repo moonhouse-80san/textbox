@@ -30,6 +30,10 @@ function getTextbox() {
 	var bg_color = node.getAttribute("bg_color");
 	var text_color = node.getAttribute("text_color");
 	var remove_whitespace = node.getAttribute("remove_whitespace");
+	var title = node.getAttribute("title");
+
+	// 제목 필드 설정
+	if(title) xGetElementById("textbox_title").value = title;
 
 	if(use_folder=="Y") xGetElementById("textbox_use").checked = true;
 	else xGetElementById("textbox_use").checked = false;
@@ -116,9 +120,9 @@ function insertTextbox() {
 	var font = xGetElementById("textbox_font").value;
 	var lineheight = xGetElementById("textbox_lineheight").value;
 	var linebreak = (xGetElementById("textbox_linebreak").checked) ? 'Y' : 'N';
-
 	var margin = parseInt(xGetElementById("textbox_margin").value,10);
 	var padding = parseInt(xGetElementById("textbox_padding").value,10);
+	var title = xGetElementById("textbox_title").value;
 
 	var border_style = "solid";
 	if(xGetElementById("border_style_none").checked) border_style = "none";
@@ -128,12 +132,10 @@ function insertTextbox() {
 	if(xGetElementById("border_style_left_dotted").checked) border_style = "left_dotted";
 
 	var border_thickness = parseInt(xGetElementById("border_thickness").value,10);
-
 	var border_color = xGetElementById("border_color_input").value;
 	var bg_color = xGetElementById("bg_color_input").value;
 	var text_color = xGetElementById("text_color_input").value;
 	
-	// 새로운 빈칸 제거 기능 추가
 	var remove_whitespace = "N";
 	if(xGetElementById("remove_whitespace_yes").checked) remove_whitespace = "Y";
 
@@ -172,6 +174,7 @@ function insertTextbox() {
 		+ '" border_thickness="' + border_thickness + '" border_color="' + border_color
 		+ '" bg_color="' + bg_color + '" text_color="' + text_color 
 		+ '" remove_whitespace="' + remove_whitespace 
+		+ '" title="' + encodeURIComponent(title) 
 		+ '" style="' + style + '">' + content + '</div><br />';
 
 	if (selected_node) {
@@ -191,6 +194,7 @@ function insertTextbox() {
 		selected_node.setAttribute("bg_color", bg_color);
 		selected_node.setAttribute("text_color", text_color);
 		selected_node.setAttribute("remove_whitespace", remove_whitespace);
+		selected_node.setAttribute("title", title);
 		selected_node.setAttribute("style", style);
 
 		if (font.length) selected_node.style.fontFamily = font;
@@ -250,66 +254,66 @@ function insertTextbox() {
 
 /* 색상 클릭시 */
 function select_color(type, code) {
-  xGetElementById(type + "_preview_color").style.backgroundColor = "#" + code;
-  xGetElementById(type + "_color_input").value = code;
+	xGetElementById(type + "_preview_color").style.backgroundColor = "#" + code;
+	xGetElementById(type + "_color_input").value = code;
 
-  if(type=="border") {
-	xGetElementById("border_style_solid_icon").style.backgroundColor = "#" + code;
-	xGetElementById("border_style_dotted_icon").style.backgroundColor = "#" + code;
-	xGetElementById("border_style_left_solid_icon").style.backgroundColor = "#" + code;
-	xGetElementById("border_style_left_dotted_icon").style.backgroundColor = "#" + code;
-  }
+	if(type=="border") {
+		xGetElementById("border_style_solid_icon").style.backgroundColor = "#" + code;
+		xGetElementById("border_style_dotted_icon").style.backgroundColor = "#" + code;
+		xGetElementById("border_style_left_solid_icon").style.backgroundColor = "#" + code;
+		xGetElementById("border_style_left_dotted_icon").style.backgroundColor = "#" + code;
+	}
 }
 
 /* 수동 색상 변경시 */
 function manual_select_color(type, obj) {
-  if(obj.value.length!=6) return;
-  code = obj.value;
-  xGetElementById(type + "_preview_color").style.backgroundColor = "#" + code;
+	if(obj.value.length!=6) return;
+	code = obj.value;
+	xGetElementById(type + "_preview_color").style.backgroundColor = "#" + code;
 
-  if(type=="border") {
-	xGetElementById("border_style_solid_icon").style.backgroundColor = "#" + code;
-	xGetElementById("border_style_dotted_icon").style.backgroundColor = "#" + code;
-	xGetElementById("border_style_left_solid_icon").style.backgroundColor = "#" + code;
-	xGetElementById("border_style_left_dotted_icon").style.backgroundColor = "#" + code;
-  }
+	if(type=="border") {
+		xGetElementById("border_style_solid_icon").style.backgroundColor = "#" + code;
+		xGetElementById("border_style_dotted_icon").style.backgroundColor = "#" + code;
+		xGetElementById("border_style_left_solid_icon").style.backgroundColor = "#" + code;
+		xGetElementById("border_style_left_dotted_icon").style.backgroundColor = "#" + code;
+	}
 }
 
 /* 색상표를 출력 */
 function printColor(type, blank_img_src) {
-  var colorTable = new Array('22','44','66','88','AA','CC','EE');
-  var html = "";
+	var colorTable = new Array('22','44','66','88','AA','CC','EE');
+	var html = "";
 
-  for(var i=0;i<8;i+=1) html += printColorBlock(type, i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16), blank_img_src);
+	for(var i=0;i<8;i+=1) html += printColorBlock(type, i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16), blank_img_src);
 
-  for(var i=0; i<colorTable.length; i+=3) {
-	for(var j=0; j<colorTable.length; j+=2) {
-	  for(var k=0; k<colorTable.length; k++) {
-		var code = colorTable[i] + colorTable[j] + colorTable[k];
-		html += printColorBlock(type, code, blank_img_src);
-	  }
+	for(var i=0; i<colorTable.length; i+=3) {
+		for(var j=0; j<colorTable.length; j+=2) {
+			for(var k=0; k<colorTable.length; k++) {
+				var code = colorTable[i] + colorTable[j] + colorTable[k];
+				html += printColorBlock(type, code, blank_img_src);
+			}
+		}
 	}
-  }
 
-  for(var i=8;i<16;i+=1) html += printColorBlock(type, i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16), blank_img_src);
+	for(var i=8;i<16;i+=1) html += printColorBlock(type, i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16)+i.toString(16), blank_img_src);
 
-  document.write(html);
+	document.write(html);
 }
 
 /* 개별 색상 block 출력 함수 */
 function printColorBlock(type, code, blank_img_src) {
-  if (type == "bg") {
-	return '<div style="float: left; background-color: #' + code + '"><img src="' + blank_img_src + "\" class=\"color_icon\" onmouseover=\"this.className='color_icon_over'\" onmouseout=\"this.className='color_icon'\" onclick=\"select_color('" + type + "', '" + code + "')\" alt=\"color\" \/><\/div>";
-  } else {
-	return '<div style="float: left; background-color: #' + code + '"><img src="' + blank_img_src + "\" class=\"color_icon\" onmouseover=\"this.className='color_icon_over'\" onmouseout=\"this.className='color_icon'\" onclick=\"select_color('" + type + "', '" + code + "')\" alt=\"color\" \/><\/div>";
-  }
+	if (type == "bg") {
+		return '<div style="float: left; background-color: #' + code + '"><img src="' + blank_img_src + "\" class=\"color_icon\" onmouseover=\"this.className='color_icon_over'\" onmouseout=\"this.className='color_icon'\" onclick=\"select_color('" + type + "', '" + code + "')\" alt=\"color\" \/><\/div>";
+	} else {
+		return '<div style="float: left; background-color: #' + code + '"><img src="' + blank_img_src + "\" class=\"color_icon\" onmouseover=\"this.className='color_icon_over'\" onmouseout=\"this.className='color_icon'\" onclick=\"select_color('" + type + "', '" + code + "')\" alt=\"color\" \/><\/div>";
+	}
 }
 
 /* 폴더 여닫기 기능 toggle */
 function toggle_folder(obj) {
-  if(obj.checked) xGetElementById("folder_area").style.display = "block";
-  else xGetElementById("folder_area").style.display = "none";
-  setFixedPopupSize();
+	if(obj.checked) xGetElementById("folder_area").style.display = "block";
+	else xGetElementById("folder_area").style.display = "none";
+	setFixedPopupSize();
 }
 
 xAddEventListener(window, "load", getTextbox);
