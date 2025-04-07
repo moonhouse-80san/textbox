@@ -4,6 +4,7 @@
 #popHeadder h3 { border:1px solid #444; margin:10px 0 10px 20px; padding:3px 5px; width:150px; text-align:center; background-color:#000; color:#fff; border-radius:5px }
 #folder_area { clear:left; }
 
+#popBody .copy_button, 
 #popBody .remove_type, 
 #popBody .border_type { float:left; margin-right:1em; width:120px; }
 

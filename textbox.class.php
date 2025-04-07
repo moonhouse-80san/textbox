@@ -66,6 +66,7 @@
 			$bg_color = $xml_obj->attrs->bg_color ?? 'F7F7F6';
 			$remove_whitespace = $xml_obj->attrs->remove_whitespace ?? 'N';
 			$title = $xml_obj->attrs->title ?? $this->getTitle();
+			$copy_button = $xml_obj->attrs->copy_button ?? 'Y';
 			$body = $xml_obj->body ?? '';
 
 			// 공백 처리 기능 적용
@@ -148,6 +149,13 @@
 			$is_xml = preg_match('/<\?xml|<var|<title|<description/i', $body);
 			$content_class = $is_xml ? 'textbox-xml' : '';
 
+			// 복사 버튼 HTML (조건부 렌더링)
+			$copy_button_html = '';
+			if ($copy_button == 'Y') {
+				$copy_button_html = sprintf('<button onclick="copytextboxContent(\'%s\')" style="%s">복사하기</button>', 
+					$box_id, $button_style);
+			}
+
 			if($use_folder == "Y") {
 				$folder_id = random_int(1000000, 9999999);
 				$folder_opener = str_replace("&amp;","&",$folder_opener);
@@ -173,20 +181,22 @@
 				$output .= sprintf('<div style="%s display:none;" id="folder_%s" data-source="%s">
 					<div class="title-scroll" style="%s">%s</div>
 					<pre class="%s" style="%s">%s</pre>
-					<button onclick="copytextboxContent(\'folder_%s\')" style="%s">복사하기</button>
+					%s
 				</div>', 
 					$folder_style, $folder_id, htmlspecialchars($body, ENT_QUOTES),
 					$title_style, $title,
-					$content_class, $pre_style, $body, $folder_id, $button_style);
+					$content_class, $pre_style, $body, 
+					$copy_button_html);
 			} else {
 				$output .= sprintf('<div style="%s position: relative;" id="%s" data-source="%s">
 					<div class="title-scroll" style="%s">%s</div>
 					<pre class="%s" style="%s">%s</pre>
-					<button onclick="copytextboxContent(\'%s\')" style="%s">복사하기</button>
+					%s
 				</div>', 
 					$style, $box_id, htmlspecialchars($body, ENT_QUOTES),
 					$title_style, $title,
-					$content_class, $pre_style, $body, $box_id, $button_style);
+					$content_class, $pre_style, $body,
+					$copy_button_html);
 			}
 			return $output;
 		}

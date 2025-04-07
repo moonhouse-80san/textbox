@@ -31,6 +31,7 @@ function getTextbox() {
 	var text_color = node.getAttribute("text_color");
 	var remove_whitespace = node.getAttribute("remove_whitespace");
 	var title = node.getAttribute("title");
+	var copy_button = node.getAttribute("copy_button") || 'Y';
 
 	// 제목 필드 설정
 	if(title) xGetElementById("textbox_title").value = title;
@@ -53,6 +54,13 @@ function getTextbox() {
 	  default :
 		  xGetElementById("textbox_color_blue").checked = true;
 		break;
+	}
+
+	// 복사 버튼 라디오 버튼 설정
+	if(copy_button == "Y") {
+		xGetElementById("copy_button_yes").checked = true;
+	} else {
+		xGetElementById("copy_button_no").checked = true;
 	}
 
 	xGetElementById("textbox_opener").value = folder_opener;
@@ -123,6 +131,8 @@ function insertTextbox() {
 	var margin = parseInt(xGetElementById("textbox_margin").value,10);
 	var padding = parseInt(xGetElementById("textbox_padding").value,10);
 	var title = xGetElementById("textbox_title").value;
+	var copy_button = "Y";
+	if(xGetElementById("copy_button_no").checked) copy_button = "N";
 
 	var border_style = "solid";
 	if(xGetElementById("border_style_none").checked) border_style = "none";
@@ -174,6 +184,7 @@ function insertTextbox() {
 		+ '" border_thickness="' + border_thickness + '" border_color="' + border_color
 		+ '" bg_color="' + bg_color + '" text_color="' + text_color 
 		+ '" remove_whitespace="' + remove_whitespace 
+		+ '" copy_button="' + copy_button
 		+ '" title="' + encodeURIComponent(title) 
 		+ '" style="' + style + '">' + content + '</div><br />';
 
@@ -194,6 +205,7 @@ function insertTextbox() {
 		selected_node.setAttribute("bg_color", bg_color);
 		selected_node.setAttribute("text_color", text_color);
 		selected_node.setAttribute("remove_whitespace", remove_whitespace);
+		selected_node.setAttribute("copy_button", copy_button);
 		selected_node.setAttribute("title", title);
 		selected_node.setAttribute("style", style);
 
