@@ -122,7 +122,7 @@
 			}
 			</script>';
 
-			// 타이틀 / 복사 버튼 스타일
+			// 타이틀 복사 버튼 스타일
 			$title_style = 'position: absolute; top: -26px; left: 0; font-weight: bold; padding: 1px 1px 5px 5px; white-space: pre; overflow-x: auto; overflow-y: hidden; width:72%; height: 25px;';
 			$button_style = 'position: absolute; top: -26px; right: 0px; padding: 3px 8px; background-color: #F7F7F6; border: 1px solid #999; border-radius: 3px; cursor: pointer; font-size: 12px; color:#444; width:70px;';
 
@@ -201,13 +201,10 @@
 			// 2. <br> 태그와 그 뒤의 개행 문자 제거
 			$content = preg_replace("/(<br\s*\/?>)(\n|\r)*/i", "\n", $content);
 			
-			// 3. span 태그 보존하고 다른 HTML 태그 제거 (이전에 strip_tags로 다른 태그는 이미 제거됨)
-			// $content = strip_tags($content); - 이 줄을 제거함
-			
-			// 4. &nbsp;를 일반 공백으로 변환
+			// 3. &nbsp;를 일반 공백으로 변환
 			$content = str_replace('&nbsp;', ' ', $content);
 			
-			// 5. 가장 작은 선행 공백 찾기
+			// 4. 가장 작은 선행 공백 찾기
 			$minIndent = null;
 			$lines = explode("\n", $content);
 			
@@ -225,7 +222,7 @@
 				}
 			}
 			
-			// 6. 모든 줄에서 최소 공백만큼 제거 (span 태그 구조 유지)
+			// 5. 모든 줄에서 최소 공백만큼 제거 (span 태그 구조 유지)
 			if ($minIndent > 0) {
 				$processed_lines = [];
 				foreach ($lines as $line) {
@@ -266,21 +263,15 @@
 		 * @brief remove_whitespace가 'N'일 때 줄바꿈 정규화
 		 **/
 		private function normalizeNewlines(string $content): string {
-			// 1. <br>과 <span> 태그만 보존하고 다른 모든 HTML 태그 제거
+			// 1. 모든 HTML 태그 제거 (br과 span 태그는 보존)
 			$content = strip_tags($content, '<br><span>');
 			
-			// 2. <br> 태그를 개행 문자로 변환
-			$content = preg_replace("/(<br\s*\/?>)/i", "\n", $content);
+			// 2. <br> 태그와 그 뒤의 개행 문자 제거
+			$content = preg_replace("/(<br\s*\/?>)(\n|\r)*/i", "\n", $content);
 			
-			// 3. <span> 태그는 보존하고 다른 남은 HTML 태그는 모두 제거
-			$content = strip_tags($content, '<span>');
-			
-			// 4. &nbsp;를 일반 공백으로 변환
+			// 3. &nbsp;를 일반 공백으로 변환
 			$content = str_replace('&nbsp;', ' ', $content);
-			
-			// 5. 여러 개의 연속된 개행 문자를 하나로 통일
-			$content = preg_replace('/\n\s*\n/', "\n", $content);
-			
+
 			return $content;
 		}
 	}
