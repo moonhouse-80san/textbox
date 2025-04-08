@@ -2,8 +2,8 @@
 <component version="0.1">
 	<title xml:lang="ko">글 상자 작성</title>
 	<title xml:lang="en">Text Box</title>
-	<version>1.2</version>
-	<date>2025-04-05</date>
+	<version>1.3</version>
+	<date>2025-04-08</date>
 	<author email_address="hhyoon@kldp.org" link="http://mooo.org" date="2008. 5. 14">
 		<name xml:lang="ko">mooo</name>
 		<name xml:lang="en">mooo</name>

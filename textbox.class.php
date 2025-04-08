@@ -205,8 +205,8 @@
 		 * @brief 코드 하이라이터 스타일의 공백 처리
 		 **/
 		private function processWhitespace(string $content): string {
-			// 1. 모든 HTML 태그 제거 (br과 span 태그는 보존)
-			$content = strip_tags($content, '<br><span>');
+			// 1. 모든 HTML 태그 제거 (br, span, a, img 태그는 보존)
+			$content = strip_tags($content, '<br><span><a><img>');
 			
 			// 2. <br> 태그와 그 뒤의 개행 문자 제거
 			$content = preg_replace("/(<br\s*\/?>)(\n|\r)*/i", "\n", $content);
@@ -221,8 +221,8 @@
 			foreach ($lines as $line) {
 				if (trim($line) === '') continue;
 				
-				// span 태그를 제외한 실제 내용의 들여쓰기 확인
-				$text_only = preg_replace('/<span[^>]*>|<\/span>/', '', $line);
+				// span, a, img 태그를 제외한 실제 내용의 들여쓰기 확인
+				$text_only = preg_replace('/<span[^>]*>|<\/span>|<a[^>]*>|<\/a>|<img[^>]*>/', '', $line);
 				
 				preg_match('/^(\s+)/', $text_only, $matches);
 				$leadingSpaces = isset($matches[1]) ? strlen($matches[1]) : 0;
@@ -232,7 +232,7 @@
 				}
 			}
 			
-			// 5. 모든 줄에서 최소 공백만큼 제거 (span 태그 구조 유지)
+			// 5. 모든 줄에서 최소 공백만큼 제거 (span, a, img 태그 구조 유지)
 			if ($minIndent > 0) {
 				$processed_lines = [];
 				foreach ($lines as $line) {
@@ -241,16 +241,16 @@
 						continue;
 					}
 					
-					// span 태그 기준으로 분리하여 각 부분 처리
-					$parts = preg_split('/(<span[^>]*>|<\/span>)/', $line, -1, PREG_SPLIT_DELIM_CAPTURE);
+					// span, a, img 태그 기준으로 분리하여 각 부분 처리
+					$parts = preg_split('/(<span[^>]*>|<\/span>|<a[^>]*>|<\/a>|<img[^>]*>)/', $line, -1, PREG_SPLIT_DELIM_CAPTURE);
 					$result = '';
 					$in_tag = false;
 					
 					foreach ($parts as $part) {
-						if (preg_match('/^<span[^>]*>$/', $part)) {
+						if (preg_match('/^<(span|a|img)[^>]*>$/', $part)) {
 							$result .= $part;
-							$in_tag = true;
-						} else if ($part === '</span>') {
+							$in_tag = ($part !== '<img>'); // img 태그는 닫는 태그가 없으므로 in_tag 상태 유지하지 않음
+						} else if (preg_match('/^<\/(span|a)>$/', $part)) {
 							$result .= $part;
 							$in_tag = false;
 						} else if (!$in_tag && !empty($part)) {
@@ -268,13 +268,13 @@
 			
 			return $content;
 		}
-		
+
 		/**
 		 * @brief remove_whitespace가 'N'일 때 줄바꿈 정규화
 		 **/
 		private function normalizeNewlines(string $content): string {
-			// 1. 모든 HTML 태그 제거 (br과 span 태그는 보존)
-			$content = strip_tags($content, '<br><span>');
+			// 1. 모든 HTML 태그 제거 (br, span, a, img 태그는 보존)
+			$content = strip_tags($content, '<br><span><a><img>');
 			
 			// 2. <br> 태그와 그 뒤의 개행 문자 제거
 			$content = preg_replace("/(<br\s*\/?>)(\n|\r)*/i", "\n", $content);
